@@ -1,0 +1,255 @@
+{
+	"info": {
+		"_postman_id": "36174549-7d8d-4e59-a54c-1a0ab5ef9c19",
+		"name": "Vitaliy  Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37716536"
+	},
+	"item": [
+		{
+			"name": "No scripts",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/scripts/generate-all-plans",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"scripts",
+						"generate-all-plans"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Single script, no dependencies",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\"scriptId\": 1, \"dependencies\": []}]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/scripts/generate-all-plans",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"scripts",
+						"generate-all-plans"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Disconnected scripts (independent scripts)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\"scriptId\": 1, \"dependencies\": []}, {\"scriptId\": 2, \"dependencies\": []}, {\"scriptId\": 3, \"dependencies\": []}]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/scripts/generate-all-plans",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"scripts",
+						"generate-all-plans"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Multiple chain of dependencies",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\"scriptId\": 1, \"dependencies\": [2, 3]}, {\"scriptId\": 2, \"dependencies\": [4]}, {\"scriptId\": 3, \"dependencies\": []}, {\"scriptId\": 4, \"dependencies\": []}]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/scripts/generate-all-plans",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"scripts",
+						"generate-all-plans"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Large chain of dependencies",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\"scriptId\": 1, \"dependencies\": [2]}, {\"scriptId\": 2, \"dependencies\": [3]}, {\"scriptId\": 3, \"dependencies\": [4]}, {\"scriptId\": 4, \"dependencies\": [5]}, {\"scriptId\": 5, \"dependencies\": []}]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/scripts/generate-all-plans",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"scripts",
+						"generate-all-plans"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Complex graph with multiple valid orders",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\"scriptId\": 1, \"dependencies\": [2, 3]}, {\"scriptId\": 2, \"dependencies\": []}, {\"scriptId\": 3, \"dependencies\": []}, {\"scriptId\": 4, \"dependencies\": [1]}, {\"scriptId\": 5, \"dependencies\": [1]}]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/scripts/generate-all-plans",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"scripts",
+						"generate-all-plans"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Generate all plans",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"scriptId\": 1,\r\n        \"dependencies\": [\r\n            2,\r\n            3\r\n        ]\r\n    },\r\n    {\r\n        \"scriptId\": 2,\r\n        \"dependencies\": []\r\n    },\r\n    {\r\n        \"scriptId\": 3,\r\n        \"dependencies\": []\r\n    },\r\n    {\r\n        \"scriptId\": 4,\r\n        \"dependencies\": [\r\n            1\r\n        ]\r\n    },\r\n    {\r\n        \"scriptId\": 5,\r\n        \"dependencies\": [\r\n            1\r\n        ]\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/scripts/generate-all-plans",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"scripts",
+						"generate-all-plans"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
