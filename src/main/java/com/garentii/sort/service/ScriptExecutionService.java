@@ -35,6 +35,10 @@ public class ScriptExecutionService {
         List<List<Integer>> allExecutionOrders = new ArrayList<>();
         backtrack(queue, new ArrayList<>(), allExecutionOrders, graph, inDegree, scripts.size());
 
+        if (allExecutionOrders.isEmpty()) {
+            throw new IllegalArgumentException("Circular dependency detected in the scripts.");
+        }
+
         return allExecutionOrders;
     }
 
